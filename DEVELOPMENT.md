@@ -1,8 +1,4 @@
-# cautious-weather
-
-<div align='center'>
-  <img src='https://img.shields.io/badge/Build-Passing-green' alt='' />
-</div>
+# Cautious Weather Development
 
 ## Project setup
 ```
