@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ul>
+      <li v-for="city in cities" :key="city.id">{{ city.name }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import CitiesData from '@/data/city.list.min.json'
+import CitiesData from '@/data/city.list.json'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      cities: CitiesData,
+    };
+  },
 }
 </script>
