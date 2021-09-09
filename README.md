@@ -1,5 +1,9 @@
 # cautious-weather
 
+<center>
+  <img src='https://img.shields.io/badge/Build-Passing-green' alt='' />
+</center>
+
 ## Project setup
 ```
 npm install
