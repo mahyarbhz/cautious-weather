@@ -2,7 +2,7 @@
   <div class="home">
     <ul>
       <!-- <li v-for="city in cities" :key="city.id">{{ city.name }}</li> -->
-      <input type="search" v-model="key" placeholder="City name" @change="searchCity(key)" />
+      <input type="search" v-model="key" placeholder="City id" @change="searchCity(key)" />
       <p>{{ data }}</p>
     </ul>
   </div>
