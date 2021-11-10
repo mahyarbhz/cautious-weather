@@ -7,9 +7,13 @@
             </form>
         </ul>
         <div class="weather-container">
-            <div class="weather-card" v-if="loadedCity">
+            <div class="weather-card" v-if="loadedCity && cityName">
                 <h3>{{ loadedCity.name }}</h3>
                 <h4>{{ loadedCity.main.temp }}</h4>
+            </div>
+            <div class="weather-card" v-else-if="loadedCities" v-for="(city, index) in loadedCities" :key="index">
+                <h3>{{ city.name }}</h3>
+                <h4>{{ city.main.temp }}</h4>
             </div>
         </div>
     </div>
@@ -24,7 +28,59 @@
             return {
                 cityName: "",
                 loadedCity: null,
+                loadedCities: []
             };
+        },
+        mounted() {
+            this.$nextTick(function () {
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Tehran' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Los Angeles' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Paris' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Paris' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Tokyo' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Shiraz' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
+                    this.loadedCities.push(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            });
         },
         methods: {
             searchCity() {
@@ -73,11 +129,14 @@
         }
         &-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin: 4rem 0;
         }
         &-card {
             width: 200px;
             height: 300px;
+            margin: 8px;
             background-color: rgba(20, 128, 200, 1);
             color: rgba(255, 255, 255, 1);
             border-radius: 8px;
