@@ -28,8 +28,12 @@
         },
         methods: {
             searchCity() {
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.cityName + '&appid=2d423db4a8520eb6e988b9c97ccfebc6').then(response => {
+                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.cityName + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                .then(response => {
                     this.loadedCity = response.data;
+                })
+                .catch(error => {
+                    alert(error.response.data.message);
                 });
             }
         }
