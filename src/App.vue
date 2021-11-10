@@ -1,13 +1,17 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
+    <h1>
+      <router-link to="/">Cautious Weather</router-link>
+    </h1>
   </div>
   <router-view/>
 </template>
 
+<style src="./assets/main.scss" lang="scss"></style>
+
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', sans-serAvenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -22,7 +26,8 @@
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: rgb(26, 30, 243);
+      text-decoration: none;
     }
   }
 }
