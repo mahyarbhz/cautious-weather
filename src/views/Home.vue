@@ -18,6 +18,13 @@
                     <h3>{{ city.name }}</h3>
                 </div>
                 <div class="weather-card-body">
+                    <h4>
+                        <ion-icon name="sunny-outline" v-if="city.weather[0].main == 'Clear'"></ion-icon>
+                        <ion-icon name="cloudy-outline" v-else-if="city.weather[0].main == 'Clouds'"></ion-icon>
+                        <ion-icon name="rainy-outline" v-else-if="city.weather[0].main == 'x'"></ion-icon>
+                        <ion-icon name="thunderstorm-outline" v-else-if="city.weather[0].main == 'y'"></ion-icon>
+                        <ion-icon name="cloud-circle-outline" v-else></ion-icon>
+                        {{ city.weather[0].main }}</h4>
                     <h4><ion-icon name="thermometer-outline"></ion-icon> {{ city.main.temp }}</h4>
                 </div>
             </div>
@@ -167,7 +174,7 @@
                     align-items: center;
 
                     &>* {
-                        margin: 0 2px;
+                        margin: 0 4px;
                     }
 
                     &>ion-icon {
