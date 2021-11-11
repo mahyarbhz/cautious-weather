@@ -18,7 +18,7 @@
                     <h3>{{ city.name }}</h3>
                 </div>
                 <div class="weather-card-body">
-                    <h4>{{ city.main.temp }}</h4>
+                    <h4><ion-icon name="thermometer-outline"></ion-icon> {{ city.main.temp }}</h4>
                 </div>
             </div>
         </div>
@@ -78,6 +78,8 @@
                 .catch(error => {
                     console.log(error);
                 });
+
+                console.log(this.loadedCities);
             });
         },
         methods: {
@@ -145,12 +147,34 @@
         &-card {
             width: 200px;
             height: 300px;
-            margin: 8px;
+            margin: 8px 0;
             background-color: rgba(20, 128, 200, 1);
             color: rgba(255, 255, 255, 1);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             transition: all 0.25s ease;
+
+            &-header {
+                text-decoration: underline;
+            }
+
+            &-body {
+                text-align: start;
+                padding: 0 12px;
+
+                &>* {
+                    display: flex;
+                    align-items: center;
+
+                    &>* {
+                        margin: 0 2px;
+                    }
+
+                    &>ion-icon {
+                        font-size: 20px;
+                    }
+                }
+            }
         }
     }
 </style>
