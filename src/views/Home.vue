@@ -6,14 +6,20 @@
                 <input type="submit" value="Search">
             </form>
         </ul>
-        <div class="weather-container">
-            <div class="weather-card" v-if="loadedCity && cityName">
+        <div class="container" v-if="loadedCity">
+            <div class="weather-result">
                 <h3>{{ loadedCity.name }}</h3>
                 <h4>{{ loadedCity.main.temp }}</h4>
             </div>
-            <div class="weather-card" v-else-if="loadedCities" v-for="(city, index) in loadedCities" :key="index">
-                <h3>{{ city.name }}</h3>
-                <h4>{{ city.main.temp }}</h4>
+        </div>
+        <div class="container weather-container" v-if="loadedCities">
+            <div class="weather-card" v-for="(city, index) in loadedCities" :key="index">
+                <div class="weather-card-header">
+                    <h3>{{ city.name }}</h3>
+                </div>
+                <div class="weather-card-body">
+                    <h4>{{ city.main.temp }}</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -42,14 +48,6 @@
                 });
 
                 axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Los Angeles' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Paris' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
                 .then(response => {
                     this.loadedCities.push(response.data);
                 })
@@ -101,6 +99,11 @@
         padding: 0;
     }
 
+    .container {
+        width: 1360px;
+        margin: 2rem auto;
+    }
+
     .weather {
         &-form {
             input[type="search"] {
@@ -127,11 +130,17 @@
                 transition: all .5s ease;
             }
         }
+        &-result {
+            background-color: rgb(212, 54, 54);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 1);
+            border-radius: 8px;
+            padding: 12px;
+        }
         &-container {
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
             flex-wrap: wrap;
-            margin: 4rem 0;
         }
         &-card {
             width: 200px;
