@@ -41,52 +41,21 @@
             return {
                 cityName: "",
                 loadedCity: null,
+                defaultCities: ['Tehran', 'Los Angeles', 'Paris', 'Tokyo', 'Shiraz'],
                 loadedCities: []
             };
         },
         mounted() {
             this.$nextTick(function () {
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Tehran' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
+                this.defaultCities.forEach((element) => {
+                    axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + element + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
+                    .then(response => {
+                        this.loadedCities.push(response.data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
                 });
-
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Los Angeles' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Paris' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Tokyo' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-                axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + 'Shiraz' + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
-                .then(response => {
-                    this.loadedCities.push(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-                console.log(this.loadedCities);
             });
         },
         methods: {
