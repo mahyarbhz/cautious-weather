@@ -42,10 +42,13 @@
                 cityName: "",
                 loadedCity: null,
                 defaultCities: ['Tehran', 'Los Angeles', 'Paris', 'Tokyo', 'Shiraz'],
+                history: [],
                 loadedCities: []
             };
         },
         mounted() {
+            this.history = JSON.parse(localStorage.getItem("history")) || []
+            console.log(this.history);
             this.$nextTick(function () {
                 this.defaultCities.forEach((element) => {
                     axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + element + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
@@ -58,11 +61,18 @@
                 });
             });
         },
+        watch: {
+            history(newValue) {
+                localStorage.setItem("history", JSON.stringify(newValue));
+                console.log(JSON.stringify(newValue));
+            }
+        },
         methods: {
             searchCity() {
                 axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.cityName + '&appid=2d423db4a8520eb6e988b9c97ccfebc6&units=metric')
                 .then(response => {
                     this.loadedCity = response.data;
+                    this.history.push(this.cityName);
                 })
                 .catch(error => {
                     alert(error.response.data.message);
