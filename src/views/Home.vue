@@ -19,13 +19,13 @@
                 </div>
                 <div class="weather-card-body">
                     <h4>
-                        <ion-icon name="sunny-outline" v-if="city.weather[0].main == 'Clear'"></ion-icon>
-                        <ion-icon name="cloudy-outline" v-else-if="city.weather[0].main == 'Clouds'"></ion-icon>
-                        <ion-icon name="rainy-outline" v-else-if="city.weather[0].main == 'x'"></ion-icon>
-                        <ion-icon name="thunderstorm-outline" v-else-if="city.weather[0].main == 'y'"></ion-icon>
-                        <ion-icon name="cloud-circle-outline" v-else></ion-icon>
+                        <img alt="sunny-outline" src="@/assets/svgs/sunny-outline.svg" v-if="city.weather[0].main == 'Clear'">
+                        <img alt="cloudy-outline" src="@/assets/svgs/cloudy-outline.svg" v-else-if="city.weather[0].main == 'Clouds'">
+                        <img alt="rainy-outline" src="@/assets/svgs/rainy-outline.svg" v-else-if="city.weather[0].main == 'x'">
+                        <img alt="thunderstorm-outline" src="@/assets/svgs/thunderstorm-outline.svg" v-else-if="city.weather[0].main == 'y'">
+                        <img alt="cloud-circle-outline" src="@/assets/svgs/cloud-circle-outline.svg" v-else>
                         {{ city.weather[0].main }}</h4>
-                    <h4><ion-icon name="thermometer-outline"></ion-icon> {{ city.main.temp }}</h4>
+                    <h4><img alt="thermometer-outline" src="@/assets/svgs/thermometer-outline.svg"> {{ city.main.temp }}</h4>
                 </div>
             </div>
         </div>
@@ -36,13 +36,13 @@
                 </div>
                 <div class="weather-card-body">
                     <h4>
-                        <ion-icon name="sunny-outline" v-if="city.weather[0].main == 'Clear'"></ion-icon>
-                        <ion-icon name="cloudy-outline" v-else-if="city.weather[0].main == 'Clouds'"></ion-icon>
-                        <ion-icon name="rainy-outline" v-else-if="city.weather[0].main == 'x'"></ion-icon>
-                        <ion-icon name="thunderstorm-outline" v-else-if="city.weather[0].main == 'y'"></ion-icon>
-                        <ion-icon name="cloud-circle-outline" v-else></ion-icon>
+                        <img alt="sunny-outline" src="@/assets/svgs/sunny-outline.svg" v-if="city.weather[0].main == 'Clear'">
+                        <img alt="cloudy-outline" src="@/assets/svgs/cloudy-outline.svg" v-else-if="city.weather[0].main == 'Clouds'">
+                        <img alt="rainy-outline" src="@/assets/svgs/rainy-outline.svg" v-else-if="city.weather[0].main == 'x'">
+                        <img alt="thunderstorm-outline" src="@/assets/svgs/thunderstorm-outline.svg" v-else-if="city.weather[0].main == 'y'">
+                        <img alt="cloud-circle-outline" src="@/assets/svgs/cloud-circle-outline.svg" v-else>
                         {{ city.weather[0].main }}</h4>
-                    <h4><ion-icon name="thermometer-outline"></ion-icon> {{ city.main.temp }}</h4>
+                    <h4><img alt="thermometer-outline" src="@/assets/svgs/thermometer-outline.svg"> {{ city.main.temp }}</h4>
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@
             flex-wrap: wrap;
 
             &-history {
-                justify-content: flex-start;
+                justify-content: center;
             }
         }
         &-card {
@@ -175,15 +175,7 @@
             transition: all 0.25s ease;
 
             &-history {
-                margin: 0 30px;
-
-                &:first-child {
-                    margin: 0 2rem 0 0;
-                }
-
-                &:last-child {
-                    margin: 0 0 0 2rem;
-                }
+                margin: 2rem 2rem 0;
             }
 
             &-header {
@@ -202,8 +194,9 @@
                         margin: 0 4px;
                     }
 
-                    &>ion-icon {
-                        font-size: 20px;
+                    &>img {
+                        filter: invert(100%);
+                        height: 20px;
                     }
                 }
             }
