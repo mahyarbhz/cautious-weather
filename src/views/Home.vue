@@ -8,8 +8,19 @@
         </ul>
         <div class="container" v-if="loadedCity">
             <div class="weather-result">
-                <h3>{{ loadedCity.name }}</h3>
-                <h4>{{ loadedCity.main.temp }}</h4>
+                <div class="weather-card-header">
+                    <h3>{{ loadedCity.name }}</h3>
+                </div>
+                <div class="weather-card-body">
+                    <h4>
+                        <img alt="sunny-outline" src="@/assets/svgs/sunny-outline.svg" v-if="loadedCity.weather[0].main == 'Clear'">
+                        <img alt="cloudy-outline" src="@/assets/svgs/cloudy-outline.svg" v-else-if="loadedCity.weather[0].main == 'Clouds'">
+                        <img alt="rainy-outline" src="@/assets/svgs/rainy-outline.svg" v-else-if="loadedCity.weather[0].main == 'x'">
+                        <img alt="thunderstorm-outline" src="@/assets/svgs/thunderstorm-outline.svg" v-else-if="loadedCity.weather[0].main == 'y'">
+                        <img alt="cloud-circle-outline" src="@/assets/svgs/cloud-circle-outline.svg" v-else>
+                        {{ loadedCity.weather[0].main }}</h4>
+                    <h4><img alt="thermometer-outline" src="@/assets/svgs/thermometer-outline.svg"> {{ loadedCity.main.temp }}</h4>
+                </div>
             </div>
         </div>
         <div class="container weather-container" v-if="fetchedCities">
@@ -149,6 +160,10 @@
             }
         }
         &-result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background-color: rgb(212, 54, 54);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
             color: rgba(255, 255, 255, 1);
